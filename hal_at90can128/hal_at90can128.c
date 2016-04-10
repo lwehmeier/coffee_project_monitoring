@@ -30,7 +30,7 @@ volatile time_t systick;
  */
 float getVoltageFromADCVal(uint16_t val)
 {
-	return ((float)val)/ADCMAXVAL*ADCREFVAL;
+	return ((float)val)/((float)ADCMAXVAL)*ADCREFVAL;
 }
 
 /***
@@ -128,13 +128,13 @@ void registerPeriodicCallback(periodicCallback_fkt f,uint16_t time)
 void uart_puti(const int32_t i)
 {
 	char t[10];
-	itoa(i,t,10);
+	snprintf(t,10,"%d",i);
 	uart_puts(t);
 }
 void uart_putf(const float i)
 {
 	char t[10];
-	snprintf(t,10,"%f",i);
+	snprintf(t,10,"%f",(double)i);
 	uart_puts(t);
 }
 	/*returns true if all bytes were read or newline was reached, writes numBytesRead to sz, only returns 1 line (\n)*/

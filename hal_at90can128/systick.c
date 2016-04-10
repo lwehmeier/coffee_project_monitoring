@@ -13,9 +13,9 @@ static systick_cb cbf[10];
 void systick_init()
 {
 	TCCR1A=0;
+	TCNT1=0;
 	TCCR1B=(1<<WGM12)|(1<<CS12)|(1<<CS10);//CTCmode, prescaler 1024
-	OCR1A=1/(F_CPU/1024);
-	OCR1B=1/(F_CPU/1024)/3;
+	OCR1A=(F_CPU/1024ul)/1000ul;
 	TIMSK1|=(1<<OCIE1A);
 }
 uint8_t systick_registerCallback(void (*cb)(void))
@@ -25,7 +25,7 @@ uint8_t systick_registerCallback(void (*cb)(void))
 	cbf[numCB]=cb;
 	numCB++;
 }
-extern time_t systick;
+extern volatile time_t systick;
 ISR(TIMER1_COMPA_vect)
 {
 	systick++;

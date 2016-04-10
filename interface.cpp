@@ -25,7 +25,7 @@ uint8_t interface_requestPending()
 void interface_handleRequest()
 {
 	char t[75];
-	snprintf(t,75,"1V8: %f, 3v3: %f, 5V0: %f, 12V0: %f, 24V0: %f\r\n", get1V8Sample(),get3V3Sample(), get5V0Sample(), get12V0Sample(), get24V0Sample());
+	snprintf(t,75,"clk: %lu, 1V8: %.3f, 3v3: %.3f, 5V0: %.3f, 12V0: %.3f, 24V: %.3f\r\n",getSystick(), get1V8Sample(),get3V3Sample(), get5V0Sample(), get12V0Sample(), get24V0Sample());
 	uart_puts(t);
 	//TODO: handle/implement protocol
 }

@@ -15,7 +15,7 @@
 
 
 /*UART CFG (hardcoded 8N1)*/
-#define UARTBAUD 9600 //not yet supported
+#define UARTBAUD 38400
 
 /*ADC config*/
 #define ADC1V8CHNL 0
